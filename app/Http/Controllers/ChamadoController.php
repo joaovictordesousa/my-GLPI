@@ -13,7 +13,7 @@ class ChamadoController extends Controller
      */
     public function index()
     {
-        $AllChamados = Chamado::all();
+        $AllChamados = Chamado::orderBy('id', 'desc')->paginate(15);
         $AllAuxprioridades = Auxprioridade::all();
 
         return view('dashboard', [
