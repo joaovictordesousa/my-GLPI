@@ -1,0 +1,42 @@
+.form-control-lg, .form-select-lg {
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+    }
+    
+    .form-control-lg:focus, .form-select-lg:focus {
+        border-color: #86b7fe;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+        transform: translateY(-1px);
+    }
+    
+    .btn-lg {
+        border-radius: 0.5rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-lg:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-light:hover {
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+    }
+    
+    .card {
+        transition: transform 0.2s ease;
+    }
+    
+    .card:hover {
+        transform: translateY(-2px);
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+    }
+    
+    .border-bottom {
+        border-bottom-color: #e9ecef !important;
+    }
