@@ -1,7 +1,9 @@
 @include('cabecalho_rodape.cabecalho')
 
 @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3 shadow-lg" role="alert" style="z-index: 1050; min-width: 350px; backdrop-filter: blur(10px); background-color: rgba(25, 135, 84, 0.95);">
+    <div class="alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3 shadow-lg"
+        role="alert"
+        style="z-index: 1050; min-width: 350px; backdrop-filter: blur(10px); background-color: rgba(25, 135, 84, 0.95);">
         <div class="d-flex align-items-center">
             <i class="bi bi-check-circle-fill me-2 fs-5"></i>
             <div class="flex-grow-1">{{ session('success') }}</div>
@@ -9,7 +11,7 @@
         </div>
     </div>
     <script>
-        setTimeout(function() {
+        setTimeout(function () {
             let alert = document.querySelector('.alert-success');
             if (alert) {
                 alert.classList.remove('show');
@@ -17,7 +19,7 @@
             }
         }, {{ session('display_time', 5000) }});
     </script>
-@endif 
+@endif
 
 <x-app-layout>
     <x-slot name="header">
@@ -131,7 +133,8 @@
                                 <span class="input-group-text bg-white border-end-0">
                                     <i class="bi bi-search"></i>
                                 </span>
-                                <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Filtrar chamados...">
+                                <input type="text" id="searchInput" class="form-control border-start-0"
+                                    placeholder="Filtrar chamados...">
                             </div>
                             <!-- Filtro por prioridade -->
                             <select id="priorityFilter" class="form-select form-select-sm" style="width: 130px;">
@@ -169,11 +172,13 @@
                                 @forelse ($AllChamados as $chamado)
                                     <tr class="chamado-row" data-prioridade="{{ $chamado->prioridade_id }}">
                                         <td class="ps-4">
-                                            <span class="badge bg-secondary bg-opacity-10 text-secondary">#{{ $chamado->id }}</span>
+                                            <span
+                                                class="badge bg-secondary bg-opacity-10 text-secondary">#{{ $chamado->id }}</span>
                                         </td>
                                         <td class="fw-semibold">{{ $chamado->titulo }}</td>
                                         <td>
-                                            <div class="text-truncate" style="max-width: 400px;" title="{{ $chamado->discricao }}">
+                                            <div class="text-truncate" style="max-width: 400px;"
+                                                title="{{ $chamado->discricao }}">
                                                 {{ $chamado->discricao }}
                                             </div>
                                         </td>
@@ -187,13 +192,17 @@
                                                 ];
                                                 $config = $prioridadeConfig[$chamado->prioridade_id] ?? ['label' => 'Não definida', 'class' => 'secondary', 'icon' => 'bi-question-circle'];
                                             @endphp
-                                            <span class="badge bg-{{ $config['class'] }} bg-opacity-10 text-{{ $config['class'] }} px-3 py-2">
+                                            <span
+                                                class="badge bg-{{ $config['class'] }} bg-opacity-10 text-{{ $config['class'] }} px-3 py-2">
                                                 <i class="bi {{ $config['icon'] }} me-1"></i>
                                                 {{ $config['label'] }}
                                             </span>
                                         </td>
                                         <td class="text-center">
-                                            <button class="btn btn-sm btn-link text-primary p-0 view-details" data-id="{{ $chamado->id }}" data-titulo="{{ $chamado->titulo }}" data-descricao="{{ $chamado->discricao }}" data-prioridade="{{ $config['label'] }}">
+                                            <button class="btn btn-sm btn-link text-primary p-0 view-details"
+                                                data-id="{{ $chamado->id }}" data-titulo="{{ $chamado->titulo }}"
+                                                data-descricao="{{ $chamado->discricao }}"
+                                                data-prioridade="{{ $config['label'] }}">
                                                 <i class="bi bi-eye fs-6"></i>
                                             </button>
                                         </td>
@@ -212,26 +221,10 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-
-                <!-- Rodapé da tabela com paginação simulada -->
-                @if(count($AllChamados) > 0)
-                <div class="card-footer bg-white border-0 py-3 px-4">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                        <div class="text-muted small">
-                            <i class="bi bi-info-circle"></i> Mostrando <span id="showingCount">{{ count($AllChamados) }}</span> de {{ count($AllChamados) }} chamados
-                        </div>
-                        <div>
-                            <button class="btn btn-sm btn-outline-secondary" disabled>
-                                <i class="bi bi-chevron-left"></i> Anterior
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary ms-2" disabled>
-                                Próximo <i class="bi bi-chevron-right"></i>
-                            </button>
-                        </div>
+                    <div class="container_paginator">
+                        {{ $AllChamados->links() }}
                     </div>
                 </div>
-                @endif
             </div>
         </div>
     </div>
@@ -279,7 +272,7 @@
 <!-- Scripts para filtros e interatividade -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Filtro por texto e prioridade
         const searchInput = document.getElementById('searchInput');
         const priorityFilter = document.getElementById('priorityFilter');
@@ -295,10 +288,10 @@
                 const titulo = row.cells[1]?.textContent.toLowerCase() || '';
                 const descricao = row.cells[2]?.textContent.toLowerCase() || '';
                 const prioridade = row.getAttribute('data-prioridade');
-                
+
                 const matchesSearch = titulo.includes(searchTerm) || descricao.includes(searchTerm);
                 const matchesPriority = priorityValue === 'all' || prioridade === priorityValue;
-                
+
                 if (matchesSearch && matchesPriority) {
                     row.style.display = '';
                     visibleCount++;
@@ -318,19 +311,19 @@
         // Modal de detalhes
         const modal = new bootstrap.Modal(document.getElementById('chamadoModal'));
         const viewButtons = document.querySelectorAll('.view-details');
-        
+
         viewButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const titulo = this.getAttribute('data-titulo');
                 const descricao = this.getAttribute('data-descricao');
                 const prioridade = this.getAttribute('data-prioridade');
-                
+
                 document.getElementById('modalTitulo').textContent = titulo;
                 document.getElementById('modalDescricao').textContent = descricao;
-                
+
                 const prioridadeBadge = document.getElementById('modalPrioridade');
                 prioridadeBadge.textContent = prioridade;
-                
+
                 // Ajustar cor do badge no modal
                 const prioridadeMap = {
                     'Baixa': 'success',
@@ -340,7 +333,7 @@
                 };
                 const cor = prioridadeMap[prioridade] || 'secondary';
                 prioridadeBadge.className = `badge bg-${cor}`;
-                
+
                 modal.show();
             });
         });
@@ -349,51 +342,3 @@
 
 <!-- Bootstrap Icons e CSS adicional -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<style>
-    .table > :not(caption) > * > * {
-        padding: 1rem 0.5rem;
-    }
-    
-    .chamado-row {
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    .chamado-row:hover {
-        background-color: #f8f9fa;
-        transform: scale(1.01);
-    }
-    
-    .card {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    .badge {
-        font-weight: 500;
-        letter-spacing: 0.3px;
-    }
-    
-    .btn-link {
-        text-decoration: none;
-        opacity: 0.7;
-        transition: opacity 0.2s;
-    }
-    
-    .btn-link:hover {
-        opacity: 1;
-    }
-    
-    @media print {
-        .btn, .card-footer, .view-details, .modal, .position-fixed {
-            display: none !important;
-        }
-        .card {
-            box-shadow: none !important;
-        }
-    }
-</style>
