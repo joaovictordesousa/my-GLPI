@@ -118,9 +118,9 @@
                                     selected @endif>
                                         @php
                                             $prioridadeIcon = [
-                                                1 => '🟢',  // Baixa
+                                                3 => '🟢',  // Baixa
                                                 2 => '🟡',  // Média
-                                                3 => '🔴',  // Alta
+                                                1 => '🔴',  // Alta
                                                 4 => '⚫',  // Urgente
                                             ];
                                             $icon = $prioridadeIcon[$auxprioridade->id] ?? '📌';
