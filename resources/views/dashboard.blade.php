@@ -180,9 +180,9 @@
                                         <td>
                                             @php
                                                 $prioridadeConfig = [
-                                                    1 => ['label' => 'Baixa', 'class' => 'success', 'icon' => 'bi-arrow-down-circle'],
+                                                    3 => ['label' => 'Baixa', 'class' => 'success', 'icon' => 'bi-arrow-down-circle'],
                                                     2 => ['label' => 'Média', 'class' => 'warning', 'icon' => 'bi-arrow-right-circle'],
-                                                    3 => ['label' => 'Alta', 'class' => 'danger', 'icon' => 'bi-arrow-up-circle'],
+                                                    1 => ['label' => 'Alta', 'class' => 'danger', 'icon' => 'bi-arrow-up-circle'],
                                                     4 => ['label' => 'Urgente', 'class' => 'dark', 'icon' => 'bi-exclamation-octagon'],
                                                 ];
                                                 $config = $prioridadeConfig[$chamado->prioridade_id] ?? ['label' => 'Não definida', 'class' => 'secondary', 'icon' => 'bi-question-circle'];
