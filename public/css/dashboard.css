@@ -1,5 +1,5 @@
-.table > :not(caption) > * > * {
-        padding: 1rem 0.5rem;
+    .table > :not(caption) > * > * {
+        padding: 1rem 0.75rem;
     }
     
     .chamado-row {
@@ -8,8 +8,8 @@
     }
     
     .chamado-row:hover {
-        background-color: #f8f9fa;
-        transform: scale(1.01);
+        background-color: #f3f7ff;
+        box-shadow: inset 3px 0 0 #1463e8;
     }
     
     .card {
@@ -17,8 +17,8 @@
     }
     
     .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 24px rgba(23, 32, 51, 0.09) !important;
     }
     
     .badge {
@@ -44,6 +44,49 @@
         display: flex;
         justify-content: right;
     }
+
+    #chamadosTable thead th {
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+        color: #526077;
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.055em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    #chamadosTable tbody td {
+        border-color: #edf1f6;
+        color: #25324a;
+    }
+
+    .table-responsive { border-radius: var(--app-radius); }
+
+    .input-group-text { background: #fff; }
+
+    .card-body h3 {
+        font-size: 1.55rem;
+        font-weight: 750;
+        letter-spacing: -0.04em;
+    }
+
+    .card-body h6 { font-size: 0.82rem; font-weight: 650; }
+
+    #searchInput,
+    #priorityFilter { min-height: 42px; font-size: 0.88rem; }
+
+    .view-details {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: #edf4ff;
+    }
+
+    .view-details:hover { background: #dceaff; }
     
     @media print {
         .btn, .card-footer, .view-details, .modal, .position-fixed {

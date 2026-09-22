@@ -9,6 +9,8 @@
         <form method="POST" action="{{ route('logout') }}" class="logout-navbar">
             @csrf
             <button type="submit" class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
+                <span class="mx-1 opacity-50">|</span>
                 <i class="bi bi-box-arrow-right me-1"></i> Sair
             </button>
         </form>
@@ -107,6 +109,10 @@
     /* Estilos do Navbar */
     .navbar {
         position: sticky;
+        min-height: 78px;
+        border-bottom: 1px solid #e8edf5;
+        background: rgba(255, 255, 255, 0.96) !important;
+        backdrop-filter: blur(14px);
         transition: all 0.3s ease;
     }
 
@@ -117,8 +123,17 @@
         transform: translateY(-50%);
         z-index: 2;
     }
+
+    .logout-navbar .btn {
+        min-height: 38px;
+        padding: 0.42rem 0.85rem;
+    }
     
     .navbar-brand {
+        gap: 0.15rem;
+        color: #1463e8 !important;
+        font-size: 1.05rem;
+        letter-spacing: -0.025em;
         transition: transform 0.2s ease;
     }
     

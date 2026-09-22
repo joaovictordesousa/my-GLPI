@@ -35,8 +35,23 @@
     
     textarea.form-control {
         resize: vertical;
+        min-height: 120px;
     }
     
     .border-bottom {
         border-bottom-color: #e9ecef !important;
+    }
+
+    .form-label { color: #334155; font-size: 0.88rem; margin-bottom: 0.45rem; }
+
+    input[type="file"].form-control { padding: 0.55rem 0.75rem; background: #fbfcfe; }
+
+    input[type="file"]::file-selector-button {
+        margin: -0.55rem 0.75rem -0.55rem -0.75rem;
+        padding: 0.55rem 0.85rem;
+        border: 0;
+        border-right: 1px solid #d8e0ec;
+        background: #edf4ff;
+        color: #1463e8;
+        font-weight: 650;
     }

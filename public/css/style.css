@@ -1,3 +1,131 @@
 @import url('bootstrap.css');
 @import url('chamado.css');
 @import url('dashboard.css');
+
+:root {
+    --app-primary: #1463e8;
+    --app-primary-dark: #0d4fbe;
+    --app-surface: #ffffff;
+    --app-background: #f4f7fb;
+    --app-text: #172033;
+    --app-muted: #64748b;
+    --app-border: #e5eaf2;
+    --app-radius: 14px;
+    --app-shadow: 0 10px 30px rgba(27, 47, 80, 0.07);
+}
+
+html { background: var(--app-background); }
+
+body {
+    min-height: 100vh;
+    color: var(--app-text);
+    background: var(--app-background);
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    min-height: calc(100vh - 78px);
+    background: radial-gradient(circle at 8% -5%, rgba(69, 131, 255, 0.11), transparent 27rem), var(--app-background);
+}
+
+header.bg-white.shadow {
+    border-bottom: 1px solid var(--app-border);
+    box-shadow: 0 4px 14px rgba(23, 32, 51, 0.06) !important;
+}
+
+header.bg-white.shadow h2 {
+    color: #1e293b;
+    font-size: 1.15rem;
+    font-weight: 750;
+    letter-spacing: -0.025em;
+}
+
+.max-w-7xl { max-width: 1280px; }
+
+.bg-white { background-color: var(--app-surface) !important; }
+
+.card,
+.alert {
+    border: 1px solid var(--app-border) !important;
+    border-radius: var(--app-radius) !important;
+}
+
+.card {
+    overflow: hidden;
+    box-shadow: var(--app-shadow) !important;
+}
+
+.card-header {
+    background: rgba(255, 255, 255, 0.82) !important;
+    border-bottom: 1px solid var(--app-border) !important;
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.btn-primary,
+.btn-success {
+    box-shadow: 0 3px 8px rgba(20, 99, 232, 0.18);
+}
+
+.btn-primary:hover {
+    background-color: var(--app-primary-dark);
+    border-color: var(--app-primary-dark);
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+    border-color: #d8e0ec;
+    border-radius: 8px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #7da9f8;
+    box-shadow: 0 0 0 0.22rem rgba(20, 99, 232, 0.12);
+}
+
+.form-text { color: var(--app-muted); }
+
+.badge {
+    border-radius: 999px;
+    font-weight: 650;
+}
+
+.text-muted { color: var(--app-muted) !important; }
+
+.alert {
+    border-left-width: 4px !important;
+    box-shadow: var(--app-shadow);
+}
+
+.alert-primary { border-left-color: var(--app-primary) !important; }
+.alert-success { border-left-color: #16a36a !important; }
+.alert-warning { border-left-color: #e89b13 !important; }
+.alert-danger { border-left-color: #e34e5a !important; }
+
+.pagination { gap: 0.35rem; margin-bottom: 0; }
+
+.page-link {
+    border: 1px solid var(--app-border);
+    border-radius: 8px !important;
+    color: #4c5b73;
+    font-weight: 600;
+}
+
+.page-item.active .page-link {
+    background: var(--app-primary);
+    border-color: var(--app-primary);
+}
+
+@media (max-width: 767.98px) {
+    .py-12 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+    .py-5 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+    .card { border-radius: 11px !important; }
+    .logout-navbar { right: 1rem !important; }
+}
