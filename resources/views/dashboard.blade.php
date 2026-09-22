@@ -243,9 +243,11 @@
                                         <td colspan="6" class="text-center py-5">
                                             <i class="bi bi-inbox fs-1 text-muted d-block mb-3"></i>
                                             <h6 class="text-muted">Nenhum chamado encontrado</h6>
-                                            <button class="btn btn-sm btn-primary mt-2">
-                                                <i class="bi bi-plus-lg"></i> Criar primeiro chamado
-                                            </button>
+                                            @if (! auth()->user()->isTecnico())
+                                                <a href="{{ route('dashboard.chamado') }}" class="btn btn-sm btn-primary mt-2">
+                                                    <i class="bi bi-plus-lg"></i> Criar primeiro chamado
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforelse
