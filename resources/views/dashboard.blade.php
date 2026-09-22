@@ -21,6 +21,17 @@
     </script>
 @endif
 
+@if (session('error'))
+    <div class="alert alert-warning alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3 shadow-lg"
+        role="alert" style="z-index: 1050; min-width: 350px;">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+            <div class="flex-grow-1">{{ session('error') }}</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+@endif
+
 <x-app-layout>
     <x-slot name="header">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
@@ -34,11 +45,13 @@
                     </h2>
                 </div>
             </div>
-            <div class="d-flex gap-2">
-                <a href="{{ route('dashboard.chamado') }}" class="btn btn-sm btn-primary">
-                    <i class="bi bi-plus-lg"></i> Novo Chamado
-                </a>
-            </div>
+            @if (! auth()->user()->isTecnico())
+                <div class="d-flex gap-2">
+                    <a href="{{ route('dashboard.chamado') }}" class="btn btn-sm btn-primary">
+                        <i class="bi bi-plus-lg"></i> Novo Chamado
+                    </a>
+                </div>
+            @endif
         </div>
     </x-slot>
 
@@ -163,6 +176,9 @@
                                     <th scope="col" width="15%">
                                         <i class="bi bi-flag me-1"></i> Prioridade
                                     </th>
+                                    <th scope="col" width="15%">
+                                        <i class="bi bi-person-gear me-1"></i> Técnico
+                                    </th>
                                     <th scope="col" width="10%" class="text-center">
                                         <i class="bi bi-three-dots"></i>
                                     </th>
@@ -198,18 +214,33 @@
                                                 {{ $config['label'] }}
                                             </span>
                                         </td>
+                                        <td>
+                                            @if ($chamado->tecnico)
+                                                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">
+                                                    <i class="bi bi-person-check me-1"></i>
+                                                    {{ $chamado->tecnico->name }}
+                                                </span>
+                                            @else
+                                                <span class="text-muted small">Aguardando técnico</span>
+                                            @endif
+                                        </td>
                                         <td class="text-center">
-                                            <button class="btn btn-sm btn-link text-primary p-0 view-details"
-                                                data-id="{{ $chamado->id }}" data-titulo="{{ $chamado->titulo }}"
-                                                data-descricao="{{ $chamado->discricao }}"
-                                                data-prioridade="{{ $config['label'] }}">
+                                            <a href="{{ route('chamado.show', $chamado) }}" class="btn btn-sm btn-link text-primary p-0" title="Ver detalhes">
                                                 <i class="bi bi-eye fs-6"></i>
-                                            </button>
+                                            </a>
+                                            @if (auth()->user()->isTecnico() && ! $chamado->tecnico_id)
+                                                <form action="{{ route('chamado.assumir', $chamado) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-success ms-2" title="Assumir chamado">
+                                                        <i class="bi bi-person-check"></i> Assumir
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center py-5">
+                                        <td colspan="6" class="text-center py-5">
                                             <i class="bi bi-inbox fs-1 text-muted d-block mb-3"></i>
                                             <h6 class="text-muted">Nenhum chamado encontrado</h6>
                                             <button class="btn btn-sm btn-primary mt-2">

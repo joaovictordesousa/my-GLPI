@@ -6,6 +6,13 @@
             <span class="ms-2 fw-semibold text-primary d-none d-sm-inline">Sistema de Chamados</span>
         </a>
 
+        <form method="POST" action="{{ route('logout') }}" class="logout-navbar">
+            @csrf
+            <button type="submit" class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-box-arrow-right me-1"></i> Sair
+            </button>
+        </form>
+
         <!-- Botão Toggle para mobile -->
         <button class="navbar-toggler border-0" type="button" @click="open = !open" :aria-expanded="open" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,11 +30,11 @@
                 </li>
                 
                 <!-- Links adicionais podem ser adicionados aqui -->
-                @if(Auth::user() && Auth::user()->email == 'admin@example.com')
+                @if(Auth::user() && Auth::user()->isAdministrador())
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.usuarios.index') }}">
                         <i class="bi bi-gear me-1"></i>
-                        Admin
+                        Administração
                     </a>
                 </li>
                 @endif
@@ -99,7 +106,16 @@
 <style>
     /* Estilos do Navbar */
     .navbar {
+        position: sticky;
         transition: all 0.3s ease;
+    }
+
+    .logout-navbar {
+        position: absolute;
+        top: 50%;
+        right: 3rem;
+        transform: translateY(-50%);
+        z-index: 2;
     }
     
     .navbar-brand {

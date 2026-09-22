@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('chamado.store') }}" method="POST" class="row g-4">
+                    <form action="{{ route('chamado.store') }}" method="POST" enctype="multipart/form-data" class="row g-4">
                         @csrf
 
                         <!-- Título -->
@@ -73,14 +73,14 @@
 
                         <!-- Anexo -->
                         <div class="col-md-6">
-                            <label for="validationDefault01" class="form-label fw-semibold">
+                            <label for="anexo" class="form-label fw-semibold">
                                 <i class="bi bi-paperclip me-1 text-primary"></i>
                                 Anexo <span class="text-danger">*</span>
                             </label>
-                            <input type="text" class="form-control form-control-lg @error('anexo') is-invalid @enderror"
-                                id="validationDefault01" name="anexo" required placeholder="Link ou caminho do anexo">
+                            <input type="file" class="form-control form-control-lg @error('anexo') is-invalid @enderror"
+                                id="anexo" name="anexo" required>
                             <div class="form-text">
-                                <i class="bi bi-link45deg"></i> Informe URL ou caminho do arquivo
+                                <i class="bi bi-upload"></i> Selecione o arquivo que deseja anexar
                             </div>
                             @error('anexo')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -118,9 +118,9 @@
                                     selected @endif>
                                         @php
                                             $prioridadeIcon = [
-                                                3 => '🟢',  // Baixa
+                                                1 => '🟢',  // Baixa
                                                 2 => '🟡',  // Média
-                                                1 => '🔴',  // Alta
+                                                3 => '🔴',  // Alta
                                                 4 => '⚫',  // Urgente
                                             ];
                                             $icon = $prioridadeIcon[$auxprioridade->id] ?? '📌';
